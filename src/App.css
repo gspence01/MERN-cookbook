@@ -61,3 +61,8 @@ input[type='search']:focus{
   border-color:#1183d6;
   outline: none
 }
+
+hr{
+  width:75vw;
+  margin: auto
+}
