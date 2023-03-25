@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "rKbPcu22w",
+    "database": "mern_cookbook",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "rKbPcu22w",
+    "database": "mern_cookbook_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "rKbPcu22w",
+    "database": "mern_cookbook_production",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
