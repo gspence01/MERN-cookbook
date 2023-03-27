@@ -14,8 +14,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 //ROOT
-app.get('/message', (req, res) => {
-    res.json({message: "hello from server"})
+app.get('/', (req, res) => {
+    res.redirect('/recipes')
 });
 
 //CONTROLLERS
@@ -24,5 +24,5 @@ app.use('/recipes', recipeController)
 
 //LISTEN
 app.listen(process.env.PORT, () => {
-    console.log(`ayyyeee broski ${process.env.PORT} the electric bugaloo`)
+    console.log(`listening on ${process.env.PORT} the electric bugaloo`)
 });

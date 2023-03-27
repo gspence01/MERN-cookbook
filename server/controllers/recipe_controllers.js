@@ -18,6 +18,7 @@ recipes.get('/:id', async (req, res) => {
     try {
         const foundRecipe = await Recipes.findOne({
             where: {recipe_id: req.params.id},
+            order:[['upload_date', 'ASC']],
             include: [
                 { model: Directions, as: 'directions' },
                 {model: Ingredients, as: 'ingredients'}

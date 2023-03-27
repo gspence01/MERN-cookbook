@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import React, {useState, useEffect, Fragment} from 'react';
+import React, {useState, useEffect, Fragment, Suspense} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 //Components
@@ -14,38 +14,45 @@ import NewestContainer from './components/NewestContainer';
 import { DataContext } from './context/DataContext';
 
 function App() {
-  let [recipeList, setRecipeList] = useState([])
+  let [recipeList, setRecipeList] = useState([{},{}])
   
   useEffect (() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('http://localhost:3001/recipes')
-        const resData = await response.json()
-        setRecipeList(resData)
+    let api_URL = 'http://localhost:3001/recipes'
+
+    fetch(api_URL)
+    .then((response) => {
+      if(!response.ok){
+        throw new Error("not good bro")
       }
-      catch (err) {
-        console.log('error', err)
-      }
-    }
-    fetchData()
+      return response.json()
+    })
+    .then((resData) => {
+      setRecipeList(resData)
+      console.log(resData)
+    })
+    .catch((error) => console.log("error", error))
   }, [])
 
+  
   return (
     <div className="App">
+      
       <Navigation />
       <Router>
         <Routes>
           <Route path='/' element={
             <Fragment>
               <TitleSearch />
-              <DataContext.Provider value={recipeList}>
-                <FavContainer />
-                <NewestContainer />
-              </DataContext.Provider>
+              <Suspense fallback= {<h2>Loading...</h2>}>
+                <DataContext.Provider value={recipeList}>
+                  <FavContainer />
+                  <NewestContainer />
+                </DataContext.Provider>
+              </Suspense>
             </Fragment>
           } />
         </Routes>
-      </Router>      
+      </Router>     
     </div>
   );
 }
