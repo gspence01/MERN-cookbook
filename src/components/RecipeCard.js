@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export default function RecipeCard(props) {
     const divStyle = {
         height: '400px',
@@ -15,7 +17,10 @@ export default function RecipeCard(props) {
     return (
         <div style = {divStyle}>
             <div className="image" style={imgStyle}></div>
-            <h1>{props.item.recipe_name}</h1>
+            <h5>
+                <Link to={`recipe/${props.item.recipe_id}`}>{props.item.recipe_name}</Link>
+            </h5>
+            <p>{props.item.upload_date}</p>
         </div>
     )
 }

@@ -31,7 +31,7 @@ export default function Navigation() {
                                 </Nav>
                             </Offcanvas.Body>
                         </Navbar.Offcanvas>
-                        <Navbar.Brand href='#'>One Jamaican Cookbook</Navbar.Brand>
+                        <Navbar.Brand href='/'>One Jamaican Cookbook</Navbar.Brand>
                     </Container>
                 </Navbar>
         </div>

@@ -9,6 +9,7 @@ import TitleSearch from './components/TitleSearch';
 import FavContainer from './components/FavContainer';
 //import PopularContainer from './components/PopularContainer';
 import NewestContainer from './components/NewestContainer';
+import RecipeView from './components/RecipeView';
 
 //Context
 import { DataContext } from './context/DataContext';
@@ -51,6 +52,7 @@ function App() {
               </Suspense>
             </Fragment>
           } />
+          <Route path='recipe/:id' element = {<RecipeView />} />
         </Routes>
       </Router>     
     </div>

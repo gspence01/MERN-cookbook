@@ -6,7 +6,7 @@ const { Recipes, Directions, Ingredients } = db
 //FIND RECIPES
 recipes.get('/', async (req, res) => {
     try {
-        const foundRecipes = await Recipes.findAll()
+        const foundRecipes = await Recipes.findAll({order:[['upload_date', 'ASC']]})
         res.status(200).json(foundRecipes)
     } catch (error) {
         res.status(500).json(error)
@@ -18,7 +18,6 @@ recipes.get('/:id', async (req, res) => {
     try {
         const foundRecipe = await Recipes.findOne({
             where: {recipe_id: req.params.id},
-            order:[['upload_date', 'ASC']],
             include: [
                 { model: Directions, as: 'directions' },
                 {model: Ingredients, as: 'ingredients'}
