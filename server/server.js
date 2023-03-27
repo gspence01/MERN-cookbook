@@ -18,6 +18,10 @@ app.get('/message', (req, res) => {
     res.json({message: "hello from server"})
 });
 
+//CONTROLLERS
+const recipeController = require('./controllers/recipe_controllers')
+app.use('/recipes', recipeController)
+
 //LISTEN
 app.listen(process.env.PORT, () => {
     console.log(`ayyyeee broski ${process.env.PORT} the electric bugaloo`)

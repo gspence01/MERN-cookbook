@@ -4,13 +4,18 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Recipes extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
+    static associate({ Ingredients, Directions }) {
+      //for ingredients association
+      Recipes.hasMany(Ingredients, {
+        foreignKey: "recipe_id",
+        as: "ingredients"
+      })
+
+      //for directions association
+      Recipes.hasMany(Directions, {
+        foreignKey: "recipe_id", 
+        as: 'directions'
+      })
     }
   }
   Recipes.init({
