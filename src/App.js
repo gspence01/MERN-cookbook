@@ -12,13 +12,12 @@ import NewestContainer from './components/NewestContainer';
 
 function App() {
   //all this crap is just testing my connection between front end and server
-  const [message, setMessage] = useState('');
-
-  useEffect(() => {
-    fetch('http://localhost:3001/message')
-    .then((res)=> res.json())
-    .then((data)=> setMessage(data.message))
-  }, []);
+  const fetchData = async () => {
+    const response = await fetch('http://localhost:3001/recipes')
+    const resData = await response.json()
+    console.log(resData)
+  }
+  fetchData()
 
   return (
     <div className="App">

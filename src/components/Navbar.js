@@ -10,7 +10,7 @@ export default function Navigation() {
         <div>
             {/* this is creating an offcanvas box that will slide from left to right showing different links to page*/}
 
-                <Navbar bg = 'light' expand={false} classname='mb-3'>
+                <Navbar bg = 'light' expand={false} className='mb-3'>
                     <Container fluid>
                         <Navbar.Toggle aria-controls='offcanvasNavbar-expand-false'/>
                         <Navbar.Offcanvas
