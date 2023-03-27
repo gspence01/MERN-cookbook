@@ -1,32 +1,51 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, Fragment} from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 //Components
 import Navigation from './components/Navbar';
 import TitleSearch from './components/TitleSearch';
 import FavContainer from './components/FavContainer';
-import PopularContainer from './components/PopularContainer';
+//import PopularContainer from './components/PopularContainer';
 import NewestContainer from './components/NewestContainer';
 
+//Context
+import { DataContext } from './context/DataContext';
 
 function App() {
-  //all this crap is just testing my connection between front end and server
-  const fetchData = async () => {
-    const response = await fetch('http://localhost:3001/recipes')
-    const resData = await response.json()
-    console.log(resData)
-  }
-  fetchData()
+  let [recipeList, setRecipeList] = useState([])
+  
+  useEffect (() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:3001/recipes')
+        const resData = await response.json()
+        setRecipeList(resData)
+      }
+      catch (err) {
+        console.log('error', err)
+      }
+    }
+    fetchData()
+  }, [])
 
   return (
     <div className="App">
       <Navigation />
-      <TitleSearch />
-      <FavContainer />
-      <PopularContainer />
-      <NewestContainer />
-      
+      <Router>
+        <Routes>
+          <Route path='/' element={
+            <Fragment>
+              <TitleSearch />
+              <DataContext.Provider value={recipeList}>
+                <FavContainer />
+                <NewestContainer />
+              </DataContext.Provider>
+            </Fragment>
+          } />
+        </Routes>
+      </Router>      
     </div>
   );
 }
