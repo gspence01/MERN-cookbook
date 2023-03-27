@@ -13,8 +13,39 @@ export default function(){
         }
         fetchData()
     }, [])
+    
+    const ingredientsList = recipeData.ingredients?.map((ingredient, index) => {
+        return (
+            <li key={index}>{ingredient.content}</li>
+        )
+    })
 
+    const directionsList = recipeData.directions?.map((direction, index) => {
+        return (
+            <li key={index}>{direction.content}</li>
+        )
+    })
+
+    const imgStyle = {
+        'backgroundImage': `url(../${recipeData.pic})`,
+        'width': '400px',
+        'height': '400px',
+        'backgroundSize': 'cover'
+    }
     return (
-        <p>{recipeData.recipe_name}</p>
+        <div className='recipeContainer'>
+            <h1>{recipeData.recipe_name}</h1>
+            
+            <div style={imgStyle}></div>
+            <p>{recipeData.description}</p>
+            <div>
+                <h3>Ingredients:</h3>
+                <ul>{ingredientsList}</ul>
+            </div>
+            <div>
+                <h3>Directions:</h3>
+                <ol>{directionsList}</ol>
+            </div>
+        </div>
     )
 }

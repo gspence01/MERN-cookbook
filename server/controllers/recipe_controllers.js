@@ -6,7 +6,7 @@ const { Recipes, Directions, Ingredients } = db
 //FIND RECIPES
 recipes.get('/', async (req, res) => {
     try {
-        const foundRecipes = await Recipes.findAll({order:[['upload_date', 'ASC']]})
+        const foundRecipes = await Recipes.findAll({order:[['upload_date', 'DESC']]})
         res.status(200).json(foundRecipes)
     } catch (error) {
         res.status(500).json(error)
