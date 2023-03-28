@@ -5,6 +5,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 
+
 export default function Navigation() {
     return (
         <div>
@@ -25,6 +26,7 @@ export default function Navigation() {
                             </Offcanvas.Header>
                             <Offcanvas.Body>
                                 <Nav className='justify-content-end flex-grow-1 pe-3'>
+                                    <Nav.Link href='/'>Home</Nav.Link>
                                     <Nav.Link href='#recipes'>Recipes</Nav.Link>
                                     <Nav.Link href = '#Favorites'>Your Favorites</Nav.Link>
                                     <Nav.Link href='#about'>About</Nav.Link>

@@ -4,16 +4,44 @@ import {useParams} from 'react-router-dom'
 export default function(){
     const {id} = useParams()
     const [recipeData, setRecipeData] = useState([])
+    const [faved, setFaved] = useState()
+
     useEffect (() => {
         const API_URL = `http://localhost:3001/recipes/${id}`
         const fetchData = async () => {
             const response = await fetch(API_URL)
             const resData = await response.json()
             setRecipeData(resData)
+            setFaved(resData.is_faved)
         }
         fetchData()
     }, [])
     
+    const favARecipe = () => {
+        setFaved(!faved)
+        const API_URL = `http://localhost:3001/recipes/${id}`
+        fetch(API_URL, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(faved)
+        })
+        .then((response) => {
+            return response.json();
+        })
+        .then((response) => {
+            return response.json
+        })
+        .then((data) => {
+            console.log(data)
+            setFaved(data.is_faved)
+        })
+        .catch((err) => {
+            console.log('error', err)
+        })
+    }
+
     const ingredientsList = recipeData.ingredients?.map((ingredient, index) => {
         return (
             <li key={index}>{ingredient.content}</li>
@@ -32,10 +60,40 @@ export default function(){
         'height': '400px',
         'backgroundSize': 'cover'
     }
+
+    const unfavStyle = {
+        'backgroundImage':'url(../icon-unliked.png)',
+        'height': '40px',
+        'width':'40px',
+        'backgroundSize': 'cover'
+    }
+    const favStyle = {
+        'backgroundImage':'url(../icon-liked.png)',
+        'height': '40px',
+        'width':'40px',
+        'backgroundSize': 'cover'
+    }
+
+    const red = () => {
+        return(
+            <div style={favStyle}></div>
+        )
+    }
+
+    const empty = () => {
+        return(
+            <div style={unfavStyle}></div>
+        )
+    }
+
     return (
         <div className='recipeContainer'>
-            <h1>{recipeData.recipe_name}</h1>
-            
+            <div>
+                <h1 style={{display:'inline-block'}}>{recipeData.recipe_name}</h1>
+                <div style={{display: 'inline-block'}} onClick={favARecipe}>
+                    {faved ? red() : empty()}
+                </div>
+            </div>
             <div style={imgStyle}></div>
             <p>{recipeData.description}</p>
             <div>
