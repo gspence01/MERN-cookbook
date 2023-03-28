@@ -23,13 +23,12 @@ function App() {
     fetch(api_URL)
     .then((response) => {
       if(!response.ok){
-        throw new Error("not good bro")
+        throw new Error("uh oh")
       }
       return response.json()
     })
     .then((resData) => {
       setRecipeList(resData)
-      console.log(resData)
     })
     .catch((error) => console.log("error", error))
   }, [])

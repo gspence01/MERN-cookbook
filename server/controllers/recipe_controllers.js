@@ -34,7 +34,7 @@ recipes.post('/', async(req, res) => {
     try {
         const newRecipe = await Recipes.create(req.body)
         res.status(200).json({
-            message: 'Good job, you bad bitch. You did a thing',
+            message: 'added',
             data: newRecipe
         })
     } catch (error) {
@@ -51,7 +51,8 @@ recipes.put('/:id', async(req, res) => {
             }
         })
         res.status(200).json({
-            message: `yeah, we did that shit at ${updatedRecipes} recipe(s)`
+            message: `updated at ${updatedRecipes} recipe(s)`,
+            data: updatedRecipes
         })
     } catch(error) {
         res.status(500).json(error)

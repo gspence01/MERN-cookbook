@@ -16,22 +16,20 @@ export default function(){
         }
         fetchData()
     }, [])
-    
+
     const favARecipe = () => {
         setFaved(!faved)
+
         const API_URL = `http://localhost:3001/recipes/${id}`
         fetch(API_URL, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(faved)
+            body: JSON.stringify({is_faved: faved})
         })
         .then((response) => {
             return response.json();
-        })
-        .then((response) => {
-            return response.json
         })
         .then((data) => {
             console.log(data)
