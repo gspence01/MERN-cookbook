@@ -2,17 +2,20 @@ import { Link } from 'react-router-dom'
 
 export default function RecipeCard(props) {
     const divStyle = {
-        height: '400px',
+        height: '300px',
         width: '300px',
-        border: 'solid 1px black',
-        borderRadius: '5px',
-        display: 'inline-block'
+        boxShadow: '0px 0px 4px',
+        borderRadius: '10px',
+        display: 'inline-block',
+        margin: '10px',
+        padding: '10px'
     }
     const imgStyle = {
         height:'200px',
         width: '200px',
         backgroundImage: `url(${props.item.pic})`,
-        backgroundSize: 'cover'
+        backgroundSize: 'cover',
+        margin: 'auto'
     }
     return (
         <div style = {divStyle}>

@@ -16,10 +16,10 @@ export default function(){
         }
         fetchData()
     }, [])
-
+    
     const favARecipe = () => {
         setFaved(!faved)
-
+        
         const API_URL = `http://localhost:3001/recipes/${id}`
         fetch(API_URL, {
             method: 'PUT',
