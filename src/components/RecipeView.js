@@ -26,14 +26,13 @@ export default function(){
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({is_faved: faved})
+            body: JSON.stringify({"is_faved": faved})
         })
         .then((response) => {
             return response.json();
         })
-        .then((data) => {
-            console.log(data)
-            setFaved(data.is_faved)
+        .then((resData) => {
+            console.log(resData.data)
         })
         .catch((err) => {
             console.log('error', err)
