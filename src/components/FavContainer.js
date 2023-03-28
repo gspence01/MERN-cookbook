@@ -5,10 +5,13 @@ import RecipeCard from "./RecipeCard"
 
 export default function FavContainer () {
     let data = useContext(DataContext)
+    
     const display = data.map((item, index) => {
-        return (
-            <RecipeCard item={item} key={index} />
-        )
+        if(item.is_faved){
+            return (
+                <RecipeCard item={item} key={index} />
+            )
+        }
     })
 
     return (
