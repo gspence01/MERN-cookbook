@@ -45,8 +45,10 @@ function App() {
               <TitleSearch />
               <Suspense fallback= {<h2>Loading...</h2>}>
                 <DataContext.Provider value={recipeList}>
-                  <FavContainer />
-                  <NewestContainer />
+                  <div id='container'>
+                    <FavContainer />
+                    <NewestContainer />
+                  </div>
                 </DataContext.Provider>
               </Suspense>
             </Fragment>

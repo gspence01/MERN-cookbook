@@ -55,7 +55,8 @@ export default function(){
         'backgroundImage': `url(../${recipeData.pic})`,
         'width': '400px',
         'height': '400px',
-        'backgroundSize': 'cover'
+        'backgroundSize': 'cover',
+        'margin': 'auto'
     }
 
     const unfavStyle = {
