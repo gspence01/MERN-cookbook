@@ -16,7 +16,7 @@ export default function FavContainer () {
 
     return (
         <div>
-            <h4>Your Favorites</h4>
+            <h4 style={{backgroundColor:"rgb(81,151,18)", height: '40px', color:'white', padding: 'auto'}}>Your Favorites</h4>
             <div className="cardContainer" style={{overflowX:'scroll', overflowY:'hidden', whiteSpace:'nowrap'}}>
                 {display}
             </div>

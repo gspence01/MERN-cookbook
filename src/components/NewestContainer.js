@@ -13,7 +13,7 @@ export default function NewestContainer () {
 
     return (
         <div>
-            <h4>Latest Recipes</h4>
+            <h4 style={{backgroundColor:"rgb(81,151,18)", height: '40px', color:'white', padding: 'auto'}}>Latest Recipes</h4>
             <div className="cardContainer" style={{overflowX:'scroll', overflowY:'hidden', whiteSpace:'nowrap'}}>
                 {display}
             </div>

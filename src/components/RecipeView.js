@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import {useParams} from 'react-router-dom'
 
-export default function(){
+export default function RecipeView(){
     const {id} = useParams()
     const [recipeData, setRecipeData] = useState([])
     const [faved, setFaved] = useState()
@@ -15,9 +15,9 @@ export default function(){
             setFaved(resData.is_faved)
         }
         fetchData()
-    }, [])
+    }, [id])
     
-    const favARecipe = () => {
+    /*const favARecipe = () => {
         setFaved(!faved)
         
         const API_URL = `http://localhost:3001/recipes/${id}`
@@ -37,7 +37,27 @@ export default function(){
         .catch((err) => {
             console.log('error', err)
         })
-    }
+    }*/
+
+    useEffect (() => {
+        const API_URL = `http://localhost:3001/recipes/${id}`
+        fetch(API_URL, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({"is_faved": faved})
+        })
+        .then((response) => {
+            return response.json();
+        })
+        .then((resData) => {
+            console.log(resData.data.is_faved)
+        })
+        .catch((err) => {
+            console.log('error', err)
+        })
+    }, [faved, id])
 
     const ingredientsList = recipeData.ingredients?.map((ingredient, index) => {
         return (
@@ -88,7 +108,7 @@ export default function(){
         <div className='recipeContainer'>
             <div>
                 <h1 style={{display:'inline-block'}}>{recipeData.recipe_name}</h1>
-                <div style={{display: 'inline-block'}} onClick={favARecipe}>
+                <div style={{display: 'inline-block'}} onClick={() => setFaved(!faved)}>
                     {faved ? red() : empty()}
                 </div>
             </div>
